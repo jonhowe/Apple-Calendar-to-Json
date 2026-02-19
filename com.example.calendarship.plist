@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN"
+ "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+  <dict>
+    <!--
+      Sanitary example plist to be committed to repo.
+      Edit the EnvironmentVariables before installing into ~/Library/LaunchAgents.
+    -->
+
+    <key>Label</key>
+    <string>com.example.calendarship</string>
+
+    <key>ProgramArguments</key>
+    <array>
+      <string>/bin/bash</string>
+      <string>-lc</string>
+      <string>cd "$REPO_DIR" &amp;&amp; ./calendar_export_and_ship.sh</string>
+    </array>
+
+    <key>StartInterval</key>
+    <integer>900</integer>
+
+    <key>RunAtLoad</key>
+    <true/>
+
+    <key>StandardOutPath</key>
+    <string>/tmp/calendarship.out.log</string>
+    <key>StandardErrorPath</key>
+    <string>/tmp/calendarship.err.log</string>
+
+    <key>EnvironmentVariables</key>
+    <dict>
+      <!-- Replace these before installing -->
+      <key>REPO_DIR</key>
+      <string>/ABS/PATH/TO/Apple-Calendar-to-Json</string>
+
+      <key>CALENDAR_NAME</key>
+      <string>Calendar</string>
+
+      <key>START_SPEC</key>
+      <string>-2</string>
+      <key>END_SPEC</key>
+      <string>+45</string>
+
+      <key>OUTFILE</key>
+      <string>/ABS/PATH/TO/Apple-Calendar-to-Json/exchange.json</string>
+      <key>ICS_OUTFILE</key>
+      <string>/ABS/PATH/TO/Apple-Calendar-to-Json/exchange.ics</string>
+
+      <key>REMOTE_HOST</key>
+      <string>seedbox</string>
+      <key>REMOTE_PATH</key>
+      <string>/home/USER/git/signal-cli-agent/user-generated/exchange.json</string>
+
+      <key>HA_HOST</key>
+      <string>root@homeassistant.home.lan</string>
+      <key>HA_PATH</key>
+      <string>/config/www/exchange.ics</string>
+
+      <key>DO_BUILD</key>
+      <string>1</string>
+    </dict>
+  </dict>
+</plist>
