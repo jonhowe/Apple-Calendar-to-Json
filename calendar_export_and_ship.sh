@@ -172,8 +172,8 @@ echo "Generating JSON..."
 # Step 3 — Convert JSON → ICS
 # ---------------------------------------------------------------------
 
-echo "Converting JSON to ICS..."
-python3 "$JSON2ICS" "$OUTFILE" "$ICS_OUTFILE"
+# echo "Converting JSON to ICS..."
+# python3 "$JSON2ICS" "$OUTFILE" "$ICS_OUTFILE"
 
 # ---------------------------------------------------------------------
 # Step 4 — Upload JSON to Seedbox
@@ -184,14 +184,14 @@ REMOTE_DIR="$(remote_dir_from_path "$REMOTE_PATH")"
 ssh "$REMOTE_HOST" "mkdir -p '$REMOTE_DIR'"
 scp -q "$OUTFILE" "$REMOTE_HOST:$REMOTE_PATH"
 
-# ---------------------------------------------------------------------
-# Step 5 — Upload ICS to Home Assistant
-# ---------------------------------------------------------------------
+# # ---------------------------------------------------------------------
+# # Step 5 — Upload ICS to Home Assistant
+# # ---------------------------------------------------------------------
 
-echo "Uploading ICS to Home Assistant..."
-HA_DIR="$(remote_dir_from_path "$HA_PATH")"
-ssh "$HA_HOST" "mkdir -p '$HA_DIR'"
-scp -q "$ICS_OUTFILE" "$HA_HOST:$HA_PATH"
+# echo "Uploading ICS to Home Assistant..."
+# HA_DIR="$(remote_dir_from_path "$HA_PATH")"
+# ssh "$HA_HOST" "mkdir -p '$HA_DIR'"
+# scp -q "$ICS_OUTFILE" "$HA_HOST:$HA_PATH"
 
 # ---------------------------------------------------------------------
 # DONE
@@ -200,5 +200,5 @@ scp -q "$ICS_OUTFILE" "$HA_HOST:$HA_PATH"
 echo "--------------------------------------------"
 echo "SUCCESS"
 echo "JSON → $REMOTE_HOST:$REMOTE_PATH"
-echo "ICS  → $HA_HOST:$HA_PATH"
+#echo "ICS  → $HA_HOST:$HA_PATH"
 echo "--------------------------------------------"
